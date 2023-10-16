@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-
+import './NewTodoForm.css';
 function NewTodoForm(props) {
   const [newItem,SetnewItem] = useState("");
 
@@ -11,7 +11,7 @@ function NewTodoForm(props) {
   }
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
-      <div>
+      <div className="input-text">
         <label>item here</label>
         <input
           value={newItem}

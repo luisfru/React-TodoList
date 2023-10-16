@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
-import NewTodoForm from './components/NewTodoForm';
+import NewTodoForm from './components/NewTodoForm/NewTodoForm';
+import TimeDate from './components/TimeDate/TimeDate';
+import Weather from './components/weather/Weather';
 
 function App() {
 
@@ -22,7 +24,6 @@ function App() {
         if(todo.id === id){
           return {...todo, completed}
         }
-
         return todo;
       })
     })
@@ -34,13 +35,17 @@ function App() {
     })
   }
   return (
-    <>
+    <div className="main">
+      <div className="Time">
+        <TimeDate/>
+      </div>
+    <div className="TodoList">
     <NewTodoForm addTodo={addTodo}/>
-    <h1 className="Header">Todo List</h1>
+    <h1 className="Header" style={{textAlign:"center"}}>Todo List</h1>
     <ul className="list">
       {todos.length === 0 && "No Todos"}
       {todos.map(todo => {
-        return <li>
+        return <li key={todo.id}>
         <label>
           <input type="checkbox" 
           checked={todo.completed}
@@ -48,11 +53,15 @@ function App() {
           {todo.title}
         </label>
         <button onClick={() => deleteTodo(todo.id)} 
-        className="btn btn-delete">Delete</button>
+        className="btn-delete">Delete</button>
       </li>
       })}
     </ul>
-    </>
+    </div>
+    <div className="Weather">
+    <Weather />
+    </div>
+    </div>
   );
 }
 
